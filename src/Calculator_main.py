@@ -54,6 +54,8 @@ def calculate():
 	res = compound.get()
 	top_label.config(text= 'The result is in: ')
 	output_label.config(text =(f'The output is is: {res}'))
+	main_frame.create_window(200, 600, window=table_button)  # show table
+	plot()
 
 # plot(10)	
     
@@ -114,9 +116,9 @@ calculate_button = tk.Button(main_frame,
 						text = "Calculate",
 						command = calculate, font= 'bold',fg="white", bg='blue')
 
-plot_button = tk.Button(main_frame,
-						text = 'Plot Function',
-						command = plot,font= 'bold', fg="white", bg='blue')
+table_button = tk.Button(main_frame,
+						text = 'Show Table',
+						command = table,font= 'bold', fg="white", bg='blue')
 
 
 reset_button = tk.Button(main_frame,
@@ -137,13 +139,13 @@ main_frame.create_window(500, 150, window=input_interest)  # click me
 main_frame.create_window(150, 210, window=Step4_txt)  # click me
 main_frame.create_window(500, 210, window=compound)  # click me
 # main_frame.create_window(500, 50, window=variable)  # click me
-main_frame.create_window(150, 350, window=calculate_button)  # click me
+main_frame.create_window(150, 350, window=calculate_button)  # calculate capital, show graph
 main_frame.create_window(300, 350, window=reset_button)  # click me
 # main_frame.create_window(200, 150, window=square_root_button)  # quit x,y
-main_frame.create_window(200, 600, window=plot_button)  # quit x,y
 
-main_frame.create_window(200, 400, window=top_label)  # quit x,y
-main_frame.create_window(200, 440, window=output_label)  # quit x,y
+
+main_frame.create_window(200, 400, window=top_label)  # Steady text
+main_frame.create_window(200, 440, window=output_label)  # output text
 
 # plot(10)
 main_frame.mainloop()
