@@ -1,13 +1,14 @@
 import tkinter as tk
 # from tkinter import *
 from  tkinter import ttk
-import math
 
 import matplotlib.pyplot as plt
 import numpy as np
 
 import matplotlib.lines as mlines
 import formula
+import Table
+import graph
 # from ttk import *
 # from Table import table
 
@@ -28,35 +29,34 @@ main_frame.pack()
 
 
 def table():
-	pass
+	start_balance = input_initial.get(1.0, "end-1c")
+	monthly_cont = input_monthly.get(1.0, "end-1c")
+	interest = input_interest.get(1.0, "end-1c")
+	compound_freq = compound.get()
+	num_years = years.get(1.0, "end-1c")
+	Table.show_table(int(start_balance),int(monthly_cont),int(interest),compound_freq,int(num_years))
 
 def plot():
-	val = 10
-	t = np.arange(0., val, 0.2)  # t goes from 0 to val, 0.2 increment
-	plt.plot(t, t, 'r--', t, t**2, 'bs', t, t**3, 'g', t, 100*np.sin(t))
-	plt.xlabel('entry a')
-	plt.ylabel('entry b')
-	# plt.title('Histogram of IQ')
-	plt.suptitle('Categorical Plotting')
-	blue_line = mlines.Line2D([], [], color='blue', marker='*',markersize=15, label='Blue stars')
-	green_line = mlines.Line2D([], [], color='green', marker='',markersize=15, label='Green line')
-	plt.legend(handles=[green_line, blue_line])
-	plt.show()
+	start_balance = input_initial.get(1.0, "end-1c")
+	monthly_cont = input_monthly.get(1.0, "end-1c")
+	interest = input_interest.get(1.0, "end-1c")
+	compound_freq = compound.get()
+	num_years = years.get(1.0, "end-1c")
+
+	
+	graph.plot_graph(int(start_balance),int(monthly_cont),int(interest),compound_freq,int(num_years))
+
 
 def reset():
-	pass
+	exit()
 	# inp = int(input_txt.get(1.0, "end-1c"))
 	# res = inp*inp
 	# lbl.config(text = "Provided Input: "+ string(inp))
 	# top_label.config(text= 'The result is in: ')
 	# output_label.config(text =(f'{inp} squared is {res}'))
-
+# Calculate end capital and display on form
 def calculate():
-	start_balance = 0
-	# inp = int(input_txt.get(1.0, "end-1c"))
-	# res = math.sqrt(inp)
-	# lbl.config(text = "Provided Input: "+ string(inp))
-	# output_label.config(text =(f'The square root of {inp} is: {res}'))
+	
 	start_balance = input_initial.get(1.0, "end-1c")
 	monthly_cont = input_monthly.get(1.0, "end-1c")
 	interest = input_interest.get(1.0, "end-1c")
@@ -64,9 +64,18 @@ def calculate():
 	num_years = years.get(1.0, "end-1c")
 
 	res = formula.calculate_capital(int(start_balance),int(monthly_cont),int(interest),compound_freq,int(num_years))
+	# Label creation for output
+	top_label = tk.Label(main_frame, text = '' )
+	output_label  = tk.Label(main_frame, text = '')
+	main_frame.create_window(200, 400, window=top_label)  # Steady text
+	main_frame.create_window(200, 440, window=output_label)  # output text
 	top_label.config(text= 'The result is in: ', font= 'bold')
 	output_label.config(text =(f'After {num_years} years you will have {round(res,1)} AUD'), font= 'bold')
-	main_frame.create_window(200, 600, window=table_button)  # show table
+	
+	
+	# display button to display table
+	main_frame.create_window(200, 600, window=table_button)
+	# plot chart
 	plot()
 
 # plot(10)	
@@ -149,12 +158,11 @@ table_button = tk.Button(main_frame,
 
 reset_button = tk.Button(main_frame,
 						text = "Reset",
-						command = exit,font= 'bold', fg="white", bg='blue')
+						command = reset,font= 'bold', fg="white", bg='blue')
 
 
 # Label Creation for output
-top_label = tk.Label(main_frame, text = '' )
-output_label  = tk.Label(main_frame, text = '')
+
 
 main_frame.create_window(150, 30, window=Step1_txt)  # click me
 main_frame.create_window(500, 30, window=input_initial)  # click me
@@ -171,8 +179,7 @@ main_frame.create_window(300, 350, window=reset_button)  # click me
 # main_frame.create_window(200, 150, window=square_root_button)  # quit x,y
 
 
-main_frame.create_window(200, 400, window=top_label)  # Steady text
-main_frame.create_window(200, 440, window=output_label)  # output text
+
 
 # plot(10)
 main_frame.mainloop()

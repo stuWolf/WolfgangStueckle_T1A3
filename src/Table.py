@@ -7,7 +7,7 @@ from formula import calculate_capital
 def print_csv():
     pass
 
-def table(P, m,  r, Compound_frequ, num_years):
+def show_table(P, m,  r, Compound_frequ, num_years):
     A=0
     ws  = tk.Tk()
     ws.title('Total Savings in AUD')
@@ -56,4 +56,4 @@ def table(P, m,  r, Compound_frequ, num_years):
 
     ws.mainloop()
 
-table(0,100,18,'monthly' ,50)
+show_table(0,100,18,'monthly' ,50)

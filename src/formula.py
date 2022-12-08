@@ -28,7 +28,7 @@ def calculate_capital(P, m,  r, Compound_frequ, t ):
 
 # t = int(input('enter number of years  '))
     if (m > 0):
-        for i in range ((n*t-1),-1, -1):
+        for i in range ((n*t-1),-1, -1): # t = number of years, n = compound frequ
             try:
                 A += m*pow((1+r/(100*n)),(i))     # calculate monthly contribution and compound interest
             except OverflowError:
