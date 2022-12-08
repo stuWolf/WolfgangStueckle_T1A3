@@ -35,7 +35,7 @@ def plot_graph(P, m,  r, Compound_frequ, num_years ):
         
     
     # configure and plot graph
-   
+    plt.title('Total Savings')
     plt.plot(t, year_contribution, 'r--', t, capital, 'g')
     plt.xlabel('Years')
     plt.ylabel('Value in AUD')
