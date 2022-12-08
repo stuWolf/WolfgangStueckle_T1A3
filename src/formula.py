@@ -4,11 +4,12 @@ from math import pow
 
 
 
-def calculate_capital(Compound_frequ, r, m, P, t ):
-    # r = 18 # interest rate in %
-    # m = 100 # monthly contribution
-    # Compound_frequ = 'monthly'
+def calculate_capital(P, m,  r, Compound_frequ, t ):
+    
     # P = 0 # start balance
+    # m = 100 # monthly contribution
+    # r = 18 # interest rate in %
+    # Compound_frequ = 'monthly'
     # t = 10  # number of years
     n = 0 # compound frequency
     A = 0 # future value of capital

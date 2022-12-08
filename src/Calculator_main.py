@@ -7,8 +7,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 import matplotlib.lines as mlines
+import formula
 # from ttk import *
-
+# from Table import table
 
 val = 10
 
@@ -24,6 +25,10 @@ root.title("Investment calculator")
 main_frame = tk.Canvas(root, width = 600, height = 1000, bg = '#AC99F2' ) # Sice of base window
 main_frame.pack()
 
+
+
+def table():
+	pass
 
 def plot():
 	val = 10
@@ -47,13 +52,20 @@ def reset():
 	# output_label.config(text =(f'{inp} squared is {res}'))
 
 def calculate():
+	start_balance = 0
 	# inp = int(input_txt.get(1.0, "end-1c"))
 	# res = math.sqrt(inp)
 	# lbl.config(text = "Provided Input: "+ string(inp))
 	# output_label.config(text =(f'The square root of {inp} is: {res}'))
-	res = compound.get()
-	top_label.config(text= 'The result is in: ')
-	output_label.config(text =(f'The output is is: {res}'))
+	start_balance = input_initial.get(1.0, "end-1c")
+	monthly_cont = input_monthly.get(1.0, "end-1c")
+	interest = input_interest.get(1.0, "end-1c")
+	compound_freq = compound.get()
+	num_years = years.get(1.0, "end-1c")
+
+	res = formula.calculate_capital(int(start_balance),int(monthly_cont),int(interest),compound_freq,int(num_years))
+	top_label.config(text= 'The result is in: ', font= 'bold')
+	output_label.config(text =(f'After {num_years} years you will have {round(res,1)} AUD'), font= 'bold')
 	main_frame.create_window(200, 600, window=table_button)  # show table
 	plot()
 
@@ -100,12 +112,26 @@ Step4_txt = tk.LabelFrame(main_frame,
 
 choices = ['Annually', 'Monthly', 'Quarterly']
 variable = tk.StringVar(main_frame)
-variable.set('Annually')
+
 compound = ttk.Combobox(main_frame, values = choices, height = 6,
 				width = 10)
+compound.set('Monthly')
+# variable = tk.StringVar()
 
-
-
+years_txt = tk.LabelFrame(main_frame,
+				text= 'Number of years of investment', 
+				fg='white', bg = 'blue', font= 'bold',
+				height = 40,
+				width = 300)
+years = tk.Text(main_frame,font= 'bold',
+				height = 1,
+				width = 10)
+# years = 10
+# compound = ttk.Combobox(main_frame, textvariable= variable, height = 6,
+# 				width = 10)
+# compound['values'] = ['Annually', 'Monthly', 'Quarterly']
+# compound['state'] = 'readonly'
+# compound.pack(fill=tk.X, padx = 5, pady = 5)
 # # Button Creation
 # square_button = tk.Button(main_frame,
 # 						text = "X^2",
@@ -138,7 +164,8 @@ main_frame.create_window(150, 150, window=Step3_txt)  # click me
 main_frame.create_window(500, 150, window=input_interest)  # click me
 main_frame.create_window(150, 210, window=Step4_txt)  # click me
 main_frame.create_window(500, 210, window=compound)  # click me
-# main_frame.create_window(500, 50, window=variable)  # click me
+main_frame.create_window(150, 270, window=years_txt)  # click me
+main_frame.create_window(500, 270, window=years ) # click me
 main_frame.create_window(150, 350, window=calculate_button)  # calculate capital, show graph
 main_frame.create_window(300, 350, window=reset_button)  # click me
 # main_frame.create_window(200, 150, window=square_root_button)  # quit x,y
