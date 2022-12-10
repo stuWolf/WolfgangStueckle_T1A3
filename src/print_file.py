@@ -33,7 +33,7 @@ def print_csv(P, m,  r, Compound_frequ, num_years):
  
    
         f.write(f'Year {i},{capital},{m*12*i} \n')
-    
+    f.
 
     f.close()
   
