@@ -21,7 +21,7 @@ def calculate_capital(P, m,  r, Compound_frequ, t ):
     # t = 10  # number of years
     n = 0 # compound frequency
     A = 0 # future value of capital
-    B_overflow = False
+    # B_overflow = False
     match Compound_frequ:
         case 'Monthly':
             n = 12
@@ -31,7 +31,7 @@ def calculate_capital(P, m,  r, Compound_frequ, t ):
             n = 1
         case _:                                         # Default value
             n = 12
-    print(f'n = {n}')
+    # print(f'n = {n}')
 # P = int(input('enter start balance  '))
 
 # t = int(input('enter number of years  '))

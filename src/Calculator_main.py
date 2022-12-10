@@ -1,6 +1,6 @@
 import tkinter as tk
 # from tkinter import *
-from  tkinter import ttk
+# from  tkinter import ttk
 # import time
 # import matplotlib.pyplot as plt
 # import numpy as np
@@ -9,6 +9,7 @@ from  tkinter import ttk
 import formula
 import Table
 import graph
+import sys
 
 # from ttk import *
 # from Table import table
@@ -45,7 +46,7 @@ def fetch_data():
 	except ValueError:
 		bal_error_label = tk.Label(main_frame, text = '* numerical value for start balance required' , font= ("Arial", 14,'bold') , fg= 'red',width = 45,  anchor = 'w')
 		main_frame.create_window(250, 80, window=bal_error_label)
-		print('* numerical start balance required')
+		# print('* numerical start balance required')
 	except Exception as e: # parent class off all exception, alternative ZeroDivisionErrpor, ValueError                 
 		print(f'this causes a {e} error')
 		
@@ -60,10 +61,11 @@ def fetch_data():
 	except ValueError:
 			cont_error_label = tk.Label(main_frame, text = '* numerical value for monthly saving required' , font= ("Arial", 14,'bold') , fg= 'red',width = 45,anchor = 'w')
 			main_frame.create_window(250, 200, window=cont_error_label)
-			print('* monthly saving required, must be numerical')
+			# print('* monthly saving required, must be numerical')
 	except Exception as e: # parent class off all exception, alternative ZeroDivisionErrpor, ValueError                 
 			print(f'this causes a {e} error')
     # print('devided by zero') # bad practice
+
 	else:
 		B_monthly = True
 	finally:
@@ -74,7 +76,7 @@ def fetch_data():
 	except ValueError:
 			int_error_label = tk.Label(main_frame, text = '* numerical value for interest rate required' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
 			main_frame.create_window(250, 320, window=int_error_label)
-			print('* interest rate required')
+			# print('* interest rate required')
 	except Exception as e: # parent class off all exception, alternative ZeroDivisionErrpor, ValueError                 
 			print(f'this causes a {e} error')
     # print('devided by zero') # bad practice
@@ -88,7 +90,7 @@ def fetch_data():
 	except ValueError:
 		year_error_label = tk.Label(main_frame, text = '* numerical value for investment period required' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
 		main_frame.create_window(250, 560, window=year_error_label)
-		print('* investment period required')
+		# print('* investment period required')
 	except Exception as e: # parent class off all exception, alternative ZeroDivisionErrpor, ValueError                 
 		print(f'this causes a {e} error')
     # print('devided by zero') # bad practice
@@ -126,7 +128,7 @@ def plot():
 
 
 def reset():
-	exit()
+	sys.exit()
 
 def calculate():
 	# calculate capital returns tuple with 

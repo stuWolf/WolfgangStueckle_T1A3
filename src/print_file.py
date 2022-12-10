@@ -20,7 +20,7 @@ from formula import calculate_capital
 #     print (e)
 def print_csv(P, m,  r, Compound_frequ, num_years):
     try:
-        f = open("./src/test.csv",'w+',encoding = 'utf-8')
+        f = open("./venv/WolfgangStueckle_T1A3/src/test_2.csv",'w+',encoding = 'utf-8')
         f.write('Years, Accrued end of Year, Total Contributions\n')
     except Exception as e:
         print (e) 
@@ -33,8 +33,9 @@ def print_csv(P, m,  r, Compound_frequ, num_years):
  
    
         f.write(f'Year {i},{capital},{m*12*i} \n')
-    f.
 
+    f.write('hallo')
+    print('finished')
     f.close()
   
 print_csv(0,100,18,'monthly' ,50)

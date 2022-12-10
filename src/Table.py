@@ -52,4 +52,4 @@ def show_table(P, m,  r, Compound_frequ, num_years):
 
     ws.mainloop()
 
-show_table(0,100,18,'monthly' ,50)
+# show_table(0,100,18,'monthly' ,50)
