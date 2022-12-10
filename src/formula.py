@@ -21,7 +21,7 @@ def calculate_capital(P, m,  r, Compound_frequ, t ):
     # t = 10  # number of years
     n = 0 # compound frequency
     A = 0 # future value of capital
-
+    B_overflow = False
     match Compound_frequ:
         case 'Monthly':
             n = 12
@@ -42,17 +42,25 @@ def calculate_capital(P, m,  r, Compound_frequ, t ):
                 A += m*(1+r/(100*n))**(i)
             except OverflowError:
                 print('ammount too high, you must be a Trillionaire!!')
+                # B_overflow = True
+                return 'overflow' 
         # print(A)
         # 1000print(i)
         A = A*12/n
-    A += P*(1+r/(100*n))**(n*t)  # calculate start capital and interest
-    return A
+    try: 
+        A += P*(1+r/(100*n))**(n*t)  # calculate start capital and interest, add to ccompounded monthly contribution
+    except OverflowError:
+        return 'overflow'
+    else:
+        # return 'overflow'
+        return A
+
 # print(round(A,2))
  
 # `A = fetch_data()
 # print(fetch_data())
 # print(int(calculate_capital(A[0],A[1],A[2],A[3],A[4])))`
-
+# print(calculate_capital(10000,0,68,'monthly' ,5000))
 # def calculate_capital(P, m,  r, Compound_frequ, t ):
 #     # P = 0 # start balance
     # m = 100 # monthly contribution

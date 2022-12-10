@@ -1,6 +1,6 @@
 # interact with files
 
-
+from formula import calculate_capital
 # modes:
 # rw
 # w  write
@@ -18,20 +18,26 @@
 #     f.close()
 # except Exception as e:
 #     print (e)
+def print_csv(P, m,  r, Compound_frequ, num_years):
+    try:
+        f = open("./src/test.csv",'w+',encoding = 'utf-8')
+        f.write('Years, Accrued end of Year, Total Contributions\n')
+    except Exception as e:
+        print (e) 
+    finally:
+        pass
 
-try:
 
-    f = open("./Lesson 8/test.csv",'w+',encoding = 'utf-8')
-    f.write("my first file \n")
-    f.write('i am here ')
-    f.write("This file\n\n")
-    f.write("contains three lines\n")
-except Exception as e:
-    print (e)
-finally:
+    for i in range(1,num_years+1, 1):
+        capital = int(calculate_capital(P, m,  r, Compound_frequ, i))
+ 
+   
+        f.write(f'Year {i},{capital},{m*12*i} \n')
+    
+
     f.close()
   
-
+print_csv(0,100,18,'monthly' ,50)
 # garbage collector  free mem as soon as program terminated
 
 # book MVC Architecture

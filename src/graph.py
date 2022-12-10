@@ -11,11 +11,7 @@ def plot_graph(P, m,  r, Compound_frequ, num_years ):
     # r = 18 # interest rate in %
     # Compound_frequ = 'monthly'
     # t = 10  # number of years
-	# start_balance = input_initial.get(1.0, "end-1c")
-	# monthly_cont = input_monthly.get(1.0, "end-1c")
-	# interest = input_interest.get(1.0, "end-1c")
-	# compound_freq = compound.get()
-	
+
     A = 0
     i = 0
     capital = []
@@ -35,11 +31,12 @@ def plot_graph(P, m,  r, Compound_frequ, num_years ):
         
     
     # configure and plot graph
-    plt.title('Total Savings')
+    # plt.title('Total Savings')
+    plt.grid(color='black', linestyle='-', linewidth=1)
     plt.plot(t, year_contribution, 'r--', t, capital, 'g')
     plt.xlabel('Years')
     plt.ylabel('Value in AUD')
-    # plt.title('Histogram of IQ')
+
     plt.suptitle('Total Capital')
     blue_line = mlines.Line2D([], [], color='red', marker='',markersize=15, label='Total Contribution')
     green_line = mlines.Line2D([], [], color='green', marker='',markersize=15, label= (f'Future value at {r}% interest '))
@@ -47,4 +44,4 @@ def plot_graph(P, m,  r, Compound_frequ, num_years ):
     plt.show()
 
 
-# plot_graph(0,100,18,'monthly',10)
+# plot_graph(0,100,18,'monthly',50)
