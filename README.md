@@ -19,9 +19,13 @@ cd WolfgangStueckleT1A3
 
 
 
+## implementation plan anfd project management
 
+[Project management](https://wolf-stueckle.atlassian.net/jira/software/projects/TA/boards/1/roadmap?shared=&atlOrigin=eyJpIjoiNDlmNmY2N2QzYTM3NDhlNTlmNmQwM2M5ZWI0OGZkYWYiLCJwIjoiaiJ9)
 
-## Included libraries
+## Code style guide
+
+[code style guide](https://peps.python.org/pep-0008/)
 
 [Resource for logo maker](https://www.freelogodesign.org/)
 
@@ -40,24 +44,17 @@ cd WolfgangStueckleT1A3
 
 ## Tech stack
 
--HTML
+-python
 
--CSS/Sass
-
--Wireframes
+-bash script
 
 -git
 
 -Markdown
 
-## Components used
--Button
+## applications used
+-pyinstaller to create single executable file, independant of python
 
--footer
-
--header
-
--pictures
 
 
 ## Sitemap and wireframes
@@ -68,4 +65,4 @@ cd WolfgangStueckleT1A3
 
 ## Target Audience
 
-Headhunters and potential employers
+everybody who is interested in financial education

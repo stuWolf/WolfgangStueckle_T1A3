@@ -1,18 +1,13 @@
 import tkinter as tk
-# from tkinter import *
-# from  tkinter import ttk
-# import time
-# import matplotlib.pyplot as plt
-# import numpy as np
 
-# import matplotlib.lines as mlines
 import formula
-import Table
+import sh_table
 import graph
+import file
 import sys
 
-# from ttk import *
-# from Table import table
+
+
 
 # val = 10
 
@@ -25,7 +20,7 @@ root.title("Investment calculator")
 # Function for getting Input
 # from textbox and printing it
 # at label widget
-main_frame = tk.Canvas(root, width = 600, height = 1000, bg = '#AC99F2' ) # Sice of base window
+main_frame = tk.Canvas(root, width = 600, height = 800, bg = '#88d6e2' ) # Sice of base window
 main_frame.pack()
 
 
@@ -41,7 +36,7 @@ def fetch_data():
 		
 
 	try:
-		start_balance = int (input_initial.get(1.0, "end-1c"))
+		start_balance = float(input_initial.get(1.0, "end-1c"))
 		# print('start balance')
 	except ValueError:
 		bal_error_label = tk.Label(main_frame, text = '* numerical value for start balance required' , font= ("Arial", 14,'bold') , fg= 'red',width = 45,  anchor = 'w')
@@ -57,7 +52,7 @@ def fetch_data():
 		pass
 
 	try:
-		monthly_cont = int(input_monthly.get(1.0, "end-1c"))
+		monthly_cont = float(input_monthly.get(1.0, "end-1c"))
 	except ValueError:
 			cont_error_label = tk.Label(main_frame, text = '* numerical value for monthly saving required' , font= ("Arial", 14,'bold') , fg= 'red',width = 45,anchor = 'w')
 			main_frame.create_window(250, 200, window=cont_error_label)
@@ -72,7 +67,7 @@ def fetch_data():
 		pass
 
 	try:
-			interest = int(input_interest.get(1.0, "end-1c"))
+			interest = float(input_interest.get(1.0, "end-1c"))
 	except ValueError:
 			int_error_label = tk.Label(main_frame, text = '* numerical value for interest rate required' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
 			main_frame.create_window(250, 320, window=int_error_label)
@@ -88,7 +83,7 @@ def fetch_data():
 	try:
 		num_years = int(years.get(1.0, "end-1c"))
 	except ValueError:
-		year_error_label = tk.Label(main_frame, text = '* numerical value for investment period required' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
+		year_error_label = tk.Label(main_frame, text = '* whole number for investment period required' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
 		main_frame.create_window(250, 560, window=year_error_label)
 		# print('* investment period required')
 	except Exception as e: # parent class off all exception, alternative ZeroDivisionErrpor, ValueError                 
@@ -113,23 +108,24 @@ def fetch_data():
 			# time.sleep(0.5)
 		
 
-
-
-
+# create file
+def print():
+	data = fetch_data()
+	file.print_csv(data[0],data[1],data[2],data[3],data[4])
+# show table
 def table():
 	data = fetch_data()
-	Table.show_table(data[0],data[1],data[2],data[3],data[4])
-
+	sh_table.show_table(data[0],data[1],data[2],data[3],data[4])
+# plot graph
 def plot():
 	data = fetch_data()
-
-	
 	graph.plot_graph(data[0],data[1],data[2],data[3],data[4])
 
-
+# end program and reset
 def reset():
 	sys.exit()
 
+# calculate future value of investment
 def calculate():
 	# calculate capital returns tuple with 
 	# [0]P = 0 # start balance
@@ -159,8 +155,10 @@ def calculate():
 			# display result window
 			# main_frame.delete( 'top_label'	)
 			main_frame.create_window(300, 690, window=top_label)  
-			# display button to display table
+			# display button to show table
 			main_frame.create_window(200, 780, window=table_button)
+			# display button to print file
+			main_frame.create_window(350, 780, window=file_button)
 		# plot chart
 			plot()
 		
@@ -177,7 +175,7 @@ def calculate():
 Step1_txt = tk.LabelFrame(main_frame,
 				text= 'Step1: Initial Investment', 
 				fg='white', bg = 'blue', font= 'bold',
-				height = 40,
+				height = 30,
 				width = 400)
 input_initial = tk.Text(main_frame,
 				height = 1,font= 'bold',
@@ -187,7 +185,7 @@ input_initial = tk.Text(main_frame,
 Step2_txt = tk.LabelFrame(main_frame,
 				text= 'Step2: Monthly Contribution', 
 				fg='white', bg = 'blue', font= 'bold',
-				height = 40,
+				height = 30,
 				width = 400)
 input_monthly = tk.Text(main_frame,
 				height = 1,font= 'bold',
@@ -197,19 +195,17 @@ input_monthly = tk.Text(main_frame,
 Step3_txt = tk.LabelFrame(main_frame,
 				text= 'Step3: Annual interest rate in %', 
 				fg='white', bg = 'blue', font= 'bold',
-				height = 40,
+				height = 30,
 				width = 400)
 input_interest = tk.Text(main_frame,font= 'bold',
 				height = 1,
 				width = 10)
 
-
-
-
+# TextBox Creation for input compound frequency
 Step4_txt = tk.LabelFrame(main_frame,
 				text= 'Step4: Choose compound frequency',
 				fg='white', bg = 'blue', font= 'bold',
-				height = 40,
+				height = 30,
 				width = 400)
 
 # display compound rate choice box
@@ -224,11 +220,11 @@ compound_var.set('Quarterly')
 compound = tk.OptionMenu(main_frame, compound_var, *options)
 
 
-
+# TextBox Creation for input investment
 years_txt = tk.LabelFrame(main_frame,
-				text= 'Number of years of investment', 
+				text= 'Step5: Number of years of investment', 
 				fg='white', bg = 'blue', font= 'bold',
-				height = 40,
+				height = 30,
 				width = 400)
 years = tk.Text(main_frame,font= 'bold',
 				height = 1,
@@ -239,6 +235,9 @@ years = tk.Text(main_frame,font= 'bold',
 calculate_button = tk.Button(main_frame,
 						text = "Calculate",
 						command = calculate, font= 'bold',fg="white", bg='blue')
+file_button = tk.Button(main_frame,
+						text = " Print .CSV ",
+	 					command = print, font= 'bold',fg="white", bg='blue')
 
 table_button = tk.Button(main_frame,
 						text = 'Show Table',
@@ -250,7 +249,7 @@ reset_button = tk.Button(main_frame,
 						command = reset,font= 'bold', fg="white", bg='blue')
 
 
-# Label Creation for output
+# Display of labels, allways on
 
 
 main_frame.create_window(200, 30, window=Step1_txt)  # click me
@@ -261,12 +260,11 @@ main_frame.create_window(200, 270, window=Step3_txt)  # click me
 main_frame.create_window(500, 270, window=input_interest)  # click me
 main_frame.create_window(200, 390, window=Step4_txt)  # click me
 main_frame.create_window(500, 390, window=compound)  # click me
-# main_frame.create_window(500, 210, window=variable)  # click me
 main_frame.create_window(200, 510, window=years_txt)  # click me
 main_frame.create_window(500, 510, window=years ) # click me
 main_frame.create_window(150, 630, window=calculate_button)  # calculate capital, show graph
 main_frame.create_window(300, 630, window=reset_button)  # click me
-# main_frame.create_window(200, 150, window=square_root_button)  # quit x,y
+
 
 
 

@@ -24,10 +24,11 @@ def plot_graph(P, m,  r, Compound_frequ, num_years ):
     # write each year into list
    
     for i in range(0,num_years+1, 1):
-        A = formula.calculate_capital(P, m,  r, Compound_frequ,int( t[i]))
-        y = m*12*i
-        year_contribution.append(y)
-        capital.append(A)
+        A = formula.calculate_capital(P, m,  r, Compound_frequ,int( t[i])) # calculate compounded value
+        capital.append(A)  #  write ammount of each year in list
+        y = int(m*12*i + P )       # calculate personal contribution, write ammount of each year in list
+        year_contribution.append(y) 
+        
         
     
     # configure and plot graph
@@ -38,7 +39,7 @@ def plot_graph(P, m,  r, Compound_frequ, num_years ):
     plt.ylabel('Value in AUD')
 
     plt.suptitle('Total Capital')
-    blue_line = mlines.Line2D([], [], color='red', marker='',markersize=15, label='Total Contribution')
+    blue_line = mlines.Line2D([], [], color='red', marker='',markersize=15, label= (f'Total Contribution of {year_contribution[num_years]} AUD'))
     green_line = mlines.Line2D([], [], color='green', marker='',markersize=15, label= (f'Future value at {r}% interest '))
     plt.legend(handles=[green_line, blue_line])
     plt.show()
