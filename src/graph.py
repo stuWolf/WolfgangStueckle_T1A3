@@ -3,7 +3,7 @@ import numpy as np
 
 import matplotlib.lines as mlines
 import formula
-import file
+# import file
 
 
 
@@ -55,7 +55,7 @@ def plot_graph(P, m,  r, Compound_frequ, num_years ):
     
 
 
-def plot_csv_data(file_name):
+def plot_csv_data(file_name,capital, year_contribution):
     plt.close()
     # P = 0 # start balance
     # m = 100 # monthly contribution
@@ -65,8 +65,8 @@ def plot_csv_data(file_name):
 
     A = 0
     i = 0
-    capital = []
-    year_contribution = []
+    # capital = []
+    # year_contribution = []
 
 
     
@@ -77,7 +77,7 @@ def plot_csv_data(file_name):
    
 
 
-    capital, year_contribution = file.file_read(file_name)
+    # capital, year_contribution = file.file_read(file_name)
 
 
     # build up an array for the t axis values

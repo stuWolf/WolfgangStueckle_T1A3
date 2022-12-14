@@ -30,7 +30,7 @@ main_frame.pack()
 def fetch_data():
 	
 	B_start = B_monthly = B_interest = B_years = False
-
+	# no exception handling for this value because the input is by choice box
 	compound_freq = compound_var.get()
 
 		
@@ -151,15 +151,18 @@ def get_file_name():
 
 # read from file
 def read():
-	main_frame.create_window(400, 790, window=input_file_name ) # click me
-	main_frame.create_window(100, 790, window=input_file_txt)  # click me
+	# got file name from input mask, proceed if name is valid and file exists
 	
 	file_name = get_file_name()
 	if not (file_name == False):
 		
-		print(file_name)
-		graph.plot_csv_data(file_name)
+		print(f'file used: {file_name}')
+		# read out file and return list of annual contribution and future capital
+		capital, year_contribution = file.file_read(file_name)
+		# plot graph with file data
+		graph.plot_csv_data(file_name,capital, year_contribution)
 		# file.file_read(file_name)
+		
 
 	
 
@@ -289,7 +292,7 @@ years = tk.Text(main_frame,font= 'bold',
 				width = 10)
 
 # TextBox Creation for input file name
-input_file_txt = tk.LabelFrame(main_frame,
+file_name_txt = tk.LabelFrame(main_frame,
 				text= 'Input file name', 
 				fg='white', bg = 'blue', font= 'bold',
 				height = 30,
@@ -322,20 +325,20 @@ reset_button = tk.Button(main_frame,
 # Display of labels, allways on
 
 # main_frame.create_rectangle(200, 30, 50, 50, fill='red')
-main_frame.create_window(200, 30, window=Step1_txt)  # click me
-main_frame.create_window(500, 30, window=input_initial)  # click me
-main_frame.create_window(200, 150, window=Step2_txt)  # click me
-main_frame.create_window(500, 150, window=input_monthly)  # click me
-main_frame.create_window(200, 270, window=Step3_txt)  # click me
-main_frame.create_window(500, 270, window=input_interest)  # click me
-main_frame.create_window(200, 390, window=Step4_txt)  # click me
-main_frame.create_window(500, 390, window=compound)  # click me
-main_frame.create_window(200, 510, window=years_txt)  # click me
-main_frame.create_window(500, 510, window=years ) # click me
+main_frame.create_window(200, 30, window=Step1_txt)  # label
+main_frame.create_window(500, 30, window=input_initial)  # input window
+main_frame.create_window(200, 150, window=Step2_txt)  # label
+main_frame.create_window(500, 150, window=input_monthly)  # input window
+main_frame.create_window(200, 270, window=Step3_txt)  # label
+main_frame.create_window(500, 270, window=input_interest)  # input window
+main_frame.create_window(200, 390, window=Step4_txt)  # label
+main_frame.create_window(500, 390, window=compound)  # choice box
+main_frame.create_window(200, 510, window=years_txt)  # label
+main_frame.create_window(500, 510, window=years ) # input window
 main_frame.create_window(150, 630, window=calculate_button)  # calculate capital, show graph
 main_frame.create_window(300, 630, window=reset_button)  # click me
-main_frame.create_window(400, 790, window=input_file_name ) # click me
-main_frame.create_window(100, 790, window=input_file_txt)  # click me
+main_frame.create_window(100, 790, window=file_name_txt)  # label
+main_frame.create_window(400, 790, window=input_file_name ) # input window
 main_frame.create_window(450, 880, window=read_file_button)  # click me
 
 

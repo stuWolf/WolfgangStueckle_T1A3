@@ -65,7 +65,7 @@ def file_read(file_name):
     return accrued, contribution
 
 # test for read file
-# file_name = './investment_data.csv'
+# file_name = 'test.csv'
 # file_read(file_name)
 # print(file_read(file_name))
 
