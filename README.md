@@ -19,7 +19,7 @@ cd WolfgangStueckleT1A3
 
 
 
-## implementation plan anfd project management
+## implementation plan and project management
 
 [Project management](https://wolf-stueckle.atlassian.net/jira/software/projects/TA/boards/1/roadmap?shared=&atlOrigin=eyJpIjoiNDlmNmY2N2QzYTM3NDhlNTlmNmQwM2M5ZWI0OGZkYWYiLCJwIjoiaiJ9)
 
@@ -27,16 +27,7 @@ cd WolfgangStueckleT1A3
 
 [code style guide](https://peps.python.org/pep-0008/)
 
-[Resource for logo maker](https://www.freelogodesign.org/)
 
-## Images
-
-[From Pixabay](https://pixabay.com/)
-[From bing](https://bing.com/)
-
-## Website link
-
-[Wolfgang Stueckle portfolio](https://wolfstueckleportfolio.netlify.app/)
 
 ## Screenshot
 
@@ -53,7 +44,7 @@ cd WolfgangStueckleT1A3
 -Markdown
 
 ## applications used
--pyinstaller to create single executable file, independant of python
+-pyinstaller to create single executable file, independant of python installation
 
 
 

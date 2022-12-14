@@ -5,7 +5,7 @@ from  tkinter import ttk
 # import math
 from formula import calculate_capital
 
-
+# show money accrued and total contribution for each year
 
 def show_table(P, m,  r, Compound_frequ, num_years):
    
@@ -19,7 +19,7 @@ def show_table(P, m,  r, Compound_frequ, num_years):
 
 # ttk.Treeview.column(column_id, anchor=Tkinter.E)
     my_table = ttk.Treeview(table_frame) 
-
+# define columns
     my_table['columns'] = ('Years', 'Accrued', 'Total Contributions')
 
     my_table.column("#0", width=0,  stretch=tk.YES)
@@ -27,17 +27,17 @@ def show_table(P, m,  r, Compound_frequ, num_years):
     my_table.column("Accrued",anchor=tk.E,width=180)
     my_table.column("Total Contributions",anchor=tk.E,width=180)
 
-
+# name columns
     my_table.heading("#0",text="",anchor=tk.CENTER)
     my_table.heading("Years",text="Years",anchor=tk.CENTER)
     my_table.heading("Accrued",text="Accrued end of Year",anchor=tk.CENTER)
     my_table.heading("Total Contributions",text="Total Contributions",anchor=tk.CENTER)
-
+# create and insert rows, one for each year
     for i in range(1,num_years+1, 1):
-        capital = int(calculate_capital(P, m,  r, Compound_frequ, i))
+        capital = calculate_capital(P, m,  r, Compound_frequ, i)
 
         my_table.insert(parent='',index='end',iid=i,text='',
-        values=[(f'Year {i}'),(f'{"{:,}".format(capital)} '), f'{int(m*12*i+P)}'])
+        values=[(f'Year {i}'),(f'{"{:,}".format(capital)} '), f'{round(m*12*i+P)}'])
 
     # file_button = tk.Button(ws,
 	# 					text = " Print .CSV ",

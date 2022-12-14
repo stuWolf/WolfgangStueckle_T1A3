@@ -96,22 +96,62 @@ def fetch_data():
 		pass
 
 
-	# A = [start_balance,monthly_cont,interest,compound_freq,num_years]
-
-	# print(A)
 # if all data good, hand over values, if not return flag for repeat of function
 	if B_start and B_monthly and B_interest and B_years:
 		return start_balance,monthly_cont,interest,compound_freq,num_years
-	else:		
+	else:	
 		return False
 			
 			# time.sleep(0.5)
+
+def get_file_name():	
+	b_file = False
+	try:
+		file_name = input_file_name.get(1.0, "end-1c")
+		f = open(file_name , mode ='r')
+	except FileExistsError:
+		file_error_label = tk.Label(main_frame, text = '* file name incorrect' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
+		main_frame.create_window(250, 700, window=file_error_label)
+		return b_file
+		# print('* investment period required')
+	except Exception as e: # parent class off all exception, alternative ZeroDivisionErrpor, ValueError                 
+		print(f'this causes a {e} error')
+		file_error_label = tk.Label(main_frame, text = '* file name incorrect' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
+		main_frame.create_window(250, 740, window=file_error_label)
+		return b_file
+
+    # print('devided by zero') # bad practice
+	
+	else:
+		f.close
+		# main_frame.delete(file_error_label)
+		return file_name
+	finally:
+		pass
 		
 
+
+
+
+
+# read from file
+def read():
+	main_frame.create_window(400, 690, window=input_file_name ) # click me
+	main_frame.create_window(100, 690, window=input_file_txt)  # click me
+	
+	file_name = get_file_name()
+	if not (file_name == False):
+		
+		print(file_name)
+		graph.plot_csv_data(file_name)
+		# file.file_read(file_name)
+
+	
+
 # create file
-def print():
+def store():
 	data = fetch_data()
-	file.print_csv(data[0],data[1],data[2],data[3],data[4])
+	file.store_csv(data[0],data[1],data[2],data[3],data[4])
 # show table
 def table():
 	data = fetch_data()
@@ -149,7 +189,7 @@ def calculate():
 			# main_frame.select_clear(window = top_label)
 			main_frame.create_window(300, 690, window=top_label)  
 		else:
-			result = int(result)
+			result = round(result,None)
 	# Label creation for output
 			top_label = tk.Label(main_frame, text = f'The result is in:\n After {data[4]} years you will have {"{:,}".format(result)} AUD' , font= ("Arial", 18),relief= 'raised')
 			# display result window
@@ -215,7 +255,7 @@ Step4_txt = tk.LabelFrame(main_frame,
 
 # variable = tk.StringVar()
 compound_var = tk.StringVar()
-options = ['Annually', 'Monthly', 'Quarterly']
+options = ['Monthly', 'Quarterly','Annually',]
 compound_var.set('Quarterly') 
 compound = tk.OptionMenu(main_frame, compound_var, *options)
 
@@ -230,14 +270,26 @@ years = tk.Text(main_frame,font= 'bold',
 				height = 1,
 				width = 10)
 
+# TextBox Creation for input file name
+input_file_txt = tk.LabelFrame(main_frame,
+				text= 'Input file name', 
+				fg='white', bg = 'blue', font= 'bold',
+				height = 30,
+				width = 200)
+input_file_name = tk.Text(main_frame,font= 'bold',
+				height = 1,
+				width = 20)
 
+read_file_button = tk.Button(main_frame,
+						text = " Read.CSV ",
+	 					command = read, font= 'bold',fg="white", bg='blue')
 
 calculate_button = tk.Button(main_frame,
 						text = "Calculate",
 						command = calculate, font= 'bold',fg="white", bg='blue')
 file_button = tk.Button(main_frame,
 						text = " Print .CSV ",
-	 					command = print, font= 'bold',fg="white", bg='blue')
+	 					command = store, font= 'bold',fg="white", bg='blue')
 
 table_button = tk.Button(main_frame,
 						text = 'Show Table',
@@ -264,6 +316,7 @@ main_frame.create_window(200, 510, window=years_txt)  # click me
 main_frame.create_window(500, 510, window=years ) # click me
 main_frame.create_window(150, 630, window=calculate_button)  # calculate capital, show graph
 main_frame.create_window(300, 630, window=reset_button)  # click me
+main_frame.create_window(450, 630, window=read_file_button)  # click me
 
 
 
