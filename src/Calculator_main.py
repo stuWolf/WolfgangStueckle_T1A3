@@ -87,9 +87,9 @@ def fetch_data():
 		pass
 
 	try:
-		num_years = int(years.get(1.0, "end-1c"))
+		num_years = abs(int(years.get(1.0, "end-1c")))
 	except ValueError:
-		year_error_label = tk.Label(main_frame, text = '* whole number for investment period required' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
+		year_error_label = tk.Label(main_frame, text = '* whole positive number for investment period required' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
 		main_frame.create_window(250, 560, window=year_error_label)
 		# print('* investment period required')
 	except Exception as e: # parent class off all exception, alternative ZeroDivisionErrpor, ValueError                 
