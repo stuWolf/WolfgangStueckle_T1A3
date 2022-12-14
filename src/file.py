@@ -1,6 +1,9 @@
 # interact with files
 from csv import reader
 from formula import calculate_capital
+from datetime import date
+
+
 # modes:
 # rw
 # w  write
@@ -9,18 +12,13 @@ from formula import calculate_capital
 # f.append cursor last line
 # f.close()
 
-# try:
-#     f = open('requirement.txt' , mode ='r+')  # if doesnt exist, open 
-#     print(f.read(9)) # read line 9
-#     f.write('i am here ')
-#     f.newlines
-#     f.write('i am here ')
-#     f.close()
-# except Exception as e:
-#     print (e)
+
 def store_csv(P, m,  r, Compound_frequ, num_years):
+    today = str(date.today())
+    filtered_date= ''.join((filter(lambda x: x not in ['-'], today)))
     try:
-        f = open("investment_data.csv",'w+',encoding = 'utf-8')
+        f = open(f'invest_data{filtered_date[2:8]}.csv','w+',encoding = 'utf-8')
+        #f = open("data.csv",'w+',encoding = 'utf-8')
         f.write('Years, Accrued end of Year, Total Contributions\n')
     except Exception as e:
         print (e) 
@@ -33,8 +31,11 @@ def store_csv(P, m,  r, Compound_frequ, num_years):
         f.write(f'Year {i},{capital},{round(m*12*i+P)} \n')
 
     f.close()
-    print('investment_data.csv created in location of this program')
-
+    print(f'invest_data{filtered_date[2:8]}.csv created in location of this program')
+    # today = str(date.today())
+    # filtered_date= ''.join((filter(lambda x: x not in ['-'], today)))
+  
+    # print(filtered_date[2:8])
 
 
 
@@ -57,11 +58,16 @@ def file_read(file_name):
 
     accrued = [eval(i) for i in accrued]
     contribution = [eval(i) for i in contribution]
+
+    # print(accrued)
+    # print(contribution)
+
     return accrued, contribution
 
-
+# test for read file
 # file_name = './investment_data.csv'
 # file_read(file_name)
-
 # print(file_read(file_name))
+
+# test for create and store_csv
 # store_csv(10,100,18,'monthly' ,10)

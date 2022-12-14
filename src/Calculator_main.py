@@ -20,7 +20,7 @@ root.title("Investment calculator")
 # Function for getting Input
 # from textbox and printing it
 # at label widget
-main_frame = tk.Canvas(root, width = 600, height = 800, bg = '#88d6e2' ) # Sice of base window
+main_frame = tk.Canvas(root, width = 600, height = 900, bg = '#88d6e2' ) # Sice of base window
 main_frame.pack()
 
 
@@ -47,6 +47,8 @@ def fetch_data():
 		
 
 	else:
+		cover_error_label = tk.Label(main_frame, text = '' , font= ("Arial", 14,'bold') ,bg='#88d6e2' ,fg= 'red',width = 45, anchor = 'w')
+		main_frame.create_window(250, 80, window=cover_error_label)
 		B_start = True
 	finally:
 		pass
@@ -62,6 +64,8 @@ def fetch_data():
     # print('devided by zero') # bad practice
 
 	else:
+		cover_error_label = tk.Label(main_frame, text = '' , font= ("Arial", 14,'bold') ,bg='#88d6e2' ,fg= 'red',width = 45, anchor = 'w')
+		main_frame.create_window(250, 200, window=cover_error_label)
 		B_monthly = True
 	finally:
 		pass
@@ -76,6 +80,8 @@ def fetch_data():
 			print(f'this causes a {e} error')
     # print('devided by zero') # bad practice
 	else:
+		cover_error_label = tk.Label(main_frame, text = '' , font= ("Arial", 14,'bold') ,bg='#88d6e2' ,fg= 'red',width = 45, anchor = 'w')
+		main_frame.create_window(250, 320, window=cover_error_label)
 		B_interest = True
 	finally:
 		pass
@@ -91,6 +97,8 @@ def fetch_data():
     # print('devided by zero') # bad practice
 	
 	else:
+		cover_error_label = tk.Label(main_frame, text = '' , font= ("Arial", 14,'bold') ,bg='#88d6e2' ,fg= 'red',width = 45, anchor = 'w')
+		main_frame.create_window(250, 560, window=cover_error_label)
 		B_years = True
 	finally:
 		pass
@@ -105,29 +113,36 @@ def fetch_data():
 			# time.sleep(0.5)
 
 def get_file_name():	
-	b_file = False
-	try:
-		file_name = input_file_name.get(1.0, "end-1c")
-		f = open(file_name , mode ='r')
-	except FileExistsError:
-		file_error_label = tk.Label(main_frame, text = '* file name incorrect' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
-		main_frame.create_window(250, 700, window=file_error_label)
-		return b_file
-		# print('* investment period required')
-	except Exception as e: # parent class off all exception, alternative ZeroDivisionErrpor, ValueError                 
-		print(f'this causes a {e} error')
-		file_error_label = tk.Label(main_frame, text = '* file name incorrect' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
-		main_frame.create_window(250, 740, window=file_error_label)
-		return b_file
-
-    # print('devided by zero') # bad practice
 	
+	file_name = input_file_name.get(1.0, "end-1c")
+	if (file_name == ''):
+		file_error_label = tk.Label(main_frame, text = '* valid .csv file name needed' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
+		main_frame.create_window(250, 830, window=file_error_label)
+		return False
 	else:
-		f.close
-		# main_frame.delete(file_error_label)
-		return file_name
-	finally:
-		pass
+		try:
+		
+			f = open(file_name , mode ='r')
+		except ValueError:
+		# show error label
+			main_frame.create_window(250, 830, window=file_error_label)
+			return False
+		# print('* investment period required')
+		except Exception as e: # parent class off all exception, alternative ZeroDivisionErrpor, ValueError                 
+			print(f'this causes a {e} error')
+		# show error label
+			file_error_label = tk.Label(main_frame, text = f'* No such file: {file_name} ' , font= ("Arial", 14,'bold') , fg= 'red',width = 45, anchor = 'w')
+			main_frame.create_window(250, 830, window=file_error_label)
+			return False
+		else:
+			f.close
+		# close file, return result
+		# cover error label
+			cover_error_label = tk.Label(main_frame, text = '' , font= ("Arial", 14,'bold') ,bg='#88d6e2' ,fg= 'red',width = 45, anchor = 'w')
+			main_frame.create_window(250, 830, window=cover_error_label)
+			return file_name
+		finally:
+			pass
 		
 
 
@@ -136,8 +151,8 @@ def get_file_name():
 
 # read from file
 def read():
-	main_frame.create_window(400, 690, window=input_file_name ) # click me
-	main_frame.create_window(100, 690, window=input_file_txt)  # click me
+	main_frame.create_window(400, 790, window=input_file_name ) # click me
+	main_frame.create_window(100, 790, window=input_file_txt)  # click me
 	
 	file_name = get_file_name()
 	if not (file_name == False):
@@ -191,14 +206,17 @@ def calculate():
 		else:
 			result = round(result,None)
 	# Label creation for output
-			top_label = tk.Label(main_frame, text = f'The result is in:\n After {data[4]} years you will have {"{:,}".format(result)} AUD' , font= ("Arial", 18),relief= 'raised')
+			if(result >=0):
+				top_label = tk.Label(main_frame, text = f'The result is in:\n After {data[4]} years you will have {"{:,}".format(result)} AUD' , font= ("Arial", 18),relief= 'raised')
+			else:
+				top_label = tk.Label(main_frame, text = f'The result is in:\n After {data[4]} years your balance will be {"{:,}".format(result)} AUD' , font= ("Arial", 18),relief= 'raised')
 			# display result window
 			# main_frame.delete( 'top_label'	)
 			main_frame.create_window(300, 690, window=top_label)  
 			# display button to show table
-			main_frame.create_window(200, 780, window=table_button)
+			main_frame.create_window(100, 880, window=table_button)
 			# display button to print file
-			main_frame.create_window(350, 780, window=file_button)
+			main_frame.create_window(250, 880, window=file_button)
 		# plot chart
 			plot()
 		
@@ -213,7 +231,7 @@ def calculate():
     
 # TextBox Creation for input Initial Investment
 Step1_txt = tk.LabelFrame(main_frame,
-				text= 'Step1: Initial Investment', 
+				text= 'Step1: Start Balance', 
 				fg='white', bg = 'blue', font= 'bold',
 				height = 30,
 				width = 400)
@@ -303,7 +321,7 @@ reset_button = tk.Button(main_frame,
 
 # Display of labels, allways on
 
-
+# main_frame.create_rectangle(200, 30, 50, 50, fill='red')
 main_frame.create_window(200, 30, window=Step1_txt)  # click me
 main_frame.create_window(500, 30, window=input_initial)  # click me
 main_frame.create_window(200, 150, window=Step2_txt)  # click me
@@ -316,8 +334,9 @@ main_frame.create_window(200, 510, window=years_txt)  # click me
 main_frame.create_window(500, 510, window=years ) # click me
 main_frame.create_window(150, 630, window=calculate_button)  # calculate capital, show graph
 main_frame.create_window(300, 630, window=reset_button)  # click me
-main_frame.create_window(450, 630, window=read_file_button)  # click me
-
+main_frame.create_window(400, 790, window=input_file_name ) # click me
+main_frame.create_window(100, 790, window=input_file_txt)  # click me
+main_frame.create_window(450, 880, window=read_file_button)  # click me
 
 
 

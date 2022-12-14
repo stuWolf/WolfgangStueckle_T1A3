@@ -36,8 +36,7 @@ def plot_graph(P, m,  r, Compound_frequ, num_years ):
         y = round(m*12*i + P )   
         year_contribution.append(y) 
     
-    print(capital)
-    print(year_contribution)
+
     # configure and plot graph
     # plt.title('Total Savings') no need, does it in plt.suptitle
     # show grid
@@ -53,10 +52,11 @@ def plot_graph(P, m,  r, Compound_frequ, num_years ):
     green_line = mlines.Line2D([], [], color='green', marker='',markersize=15, label= (f'Future value at {r}% interest '))
     plt.legend(handles=[green_line, blue_line])
     plt.show()
+    
 
 
 def plot_csv_data(file_name):
-    
+    plt.close()
     # P = 0 # start balance
     # m = 100 # monthly contribution
     # r = 18 # interest rate in %
@@ -92,7 +92,7 @@ def plot_csv_data(file_name):
     # show labels
     plt.xlabel('Years')
     plt.ylabel('Value in AUD')
-    plt.suptitle(f'Total Capital based on{file_name}')
+    plt.suptitle(f'Total Capital based on {file_name}')
     # define and show legend
     blue_line = mlines.Line2D([], [], color='red', marker='',markersize=15, label= (f'Total Contribution: {year_contribution[-1]} AUD'))
     green_line = mlines.Line2D([], [], color='green', marker='',markersize=15, label= (f'Future value of capital: {capital[-1]} AUD '))
@@ -100,6 +100,6 @@ def plot_csv_data(file_name):
     plt.show()
 
 
-file_name = './investment_data.csv'
+# file_name = './investment_data.csv'
 # plot_csv_data(file_name)
 # plot_graph(0,100,18,'monthly',10)
