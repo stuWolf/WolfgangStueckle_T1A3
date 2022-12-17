@@ -1,10 +1,10 @@
 ## Investment calculator
 
-Compound interest is a wonderfull thing, at least when you are in the plus! A lot of people don't even know what it is, so I decided to write this little program to make it visible. Also for a bit financial education for my children.
-I am well aware that there are slready plenty of savings and mortgage calculators online, but first of all replicating things is a great way to learn. In addition to the calculators I have seen, my program also accepts negative numbers for Start Balance, Monthly deposit and yearly interest, that opens the way to many different new examples.
+Compound interest is a wonderful thing, at least when you are in the plus! A lot of people don't even know what it is, so I decided to write this little program to make it visible. Also for a bit financial education for my children.
+I am well aware that there are already plenty of savings and mortgage calculators online, but first of all replicating things is a great way to learn. In addition to the calculators I have seen, my program also accepts negative numbers for Start Balance, Monthly deposit and yearly interest, that opens the way to many different new examples.
 For example:
 What happens to a -1000$ credit card balance at 25% when you leave it for 5 years?
-Or what is the buying power of 10,000$ cash  at 4% inflation anfter 10 or 20 years? (set interest rate to -4%)
+Or what is the buying power of 10,000$ cash  at 4% inflation after 10 or 20 years? (set interest rate to -4%)
 On the plus side if you give your child a $1000 at his birthday and put it into an investment funds at average return of 12%, how much would it be worth at 65? (Warren Buffets longterm return is actually 18%) Try it out. 
 The program turned into a great tool for financial planning and education. I want to try to implement it as an app and integrate it as an example of my work in my profile page.
 
@@ -57,6 +57,7 @@ Please see system overview for further details.
 ### R7.1 Implementation.pdf for each feature
 Please see System overview and testplan
 ![Testplan](../WolfgangStueckle_T1A3/docs/Test_Plan.pdf)
+
 
 ![Systemoverview](../WolfgangStueckle_T1A3/docs/System_overview.pdf)
 ### R7.2 Prioritiy of implementation

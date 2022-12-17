@@ -46,13 +46,18 @@ def file_read(file_name):
 
     with open(file_name, 'r') as csv_file:
          csv_reader = reader(csv_file)
+         # the csv.reader function returns a list of lists, with each row in a file as a seperate list
+         # read the 2nd and the third element of each list and write it in a new list
+         # the result is a list for each column that can be processed by the plot function
          for row in csv_reader:
             accrued.append(row[1])
             contribution.append(row[2])
-   
+   # loose the column name
     accrued.pop(0)
     contribution.pop(0)
 
+
+# convert the list of strings to list of integer
     accrued = [eval(i) for i in accrued]
     contribution = [eval(i) for i in contribution]
 
@@ -62,8 +67,8 @@ def file_read(file_name):
     return accrued, contribution
 
 # test for read file
-# file_name = 'test.csv'
-# file_read(file_name)
+# file_name = 'invest_data221218.csv'
+# # file_read(file_name)
 # print(file_read(file_name))
 
 # test for create and store_csv
