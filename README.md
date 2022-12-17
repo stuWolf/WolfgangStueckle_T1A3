@@ -5,7 +5,8 @@ I am well aware that there are slready plenty of savings and mortgage calculator
 For example:
 What happens to a -1000$ credit card balance at 25% when you leave it for 5 years?
 Or what is the buying power of 10,000$ cash  at 4% inflation anfter 10 or 20 years? (set interest rate to -4%)
-The program turned into a great tool for financial planning and education.
+On the plus side if you give your child a $1000 at his birthday and put it into an investment funds at average return of 12%, how much would it be worth at 65? (Warren Buffets longterm return is actually 18%) Try it out. 
+The program turned into a great tool for financial planning and education. I want to try to implement it as an app and integrate it as an example of my work in my profile page.
 
 
 ## R3 Attribution and Project Idea
@@ -26,93 +27,76 @@ The logic of the program is based on the compound interest formula:
  For a one off start balance it is pritty straight forward, however it gets a little more interestig if the user starts making monthly deposits. basically each deposit needs to be run through the formula with t the time from the moment of deposit to the end of the period of investment. Each iteration needs to be added to the result.
 
 The output would be how much you would have at the end of the Investment period and the chart. Optional this can be displayed in a table and stored in a .csv file.
-The program can also read a previously.csv file back and display the contents as graph.
+The program can also read a previously generated .csv file back and display the contents as graph.
 
 
-# This is implemented in the following features:
+### This is implemented in the following features:
 1. Show input mask
 get input data from user and check for plausibility, filter out 
 invalid inputs
+I started implementing this program as a GUI based application because it is just so much more user friendly. However following the conversation on discord I realiced that this assignment is more about a terminal based application, so I wrote a terminal based user interface as well. I used the same set of functions for both versions, just the way I get the data from the user is different.
 
 2. Calculate value of a future investment 
 based on the input values:
 initial Investment', Monthly Contribution, Annual interest rate, Compound frequency, Number of years of investment.
 
-
-
 3. Show value of investment and monthly contribution in a table for each year of investment
-
-
 
 4. Store value of investment and monthly contribution in a .CSV file for each year.
 
+5. Plot chart with investment value and contribution over time.
 
+6. Read from previous generated .csv file and show data in a chart.
 
-
-5. Plot chart with investment value and contribution over time"
-
-
-
-6. Read from previous file and show data in a chart."
-
-
-
+Please see system overview for further details.
+![Systemoverview](../WolfgangStueckle_T1A3/docs/System_overview.pdf)
 
 
 ## R7: implementation plan and project management
 
+### R7.1 Implementation.pdf for each feature
+Please see System overview and testplan
+![Testplan](../WolfgangStueckle_T1A3/docs/Test_Plan.pdf)
+
+![Systemoverview](../WolfgangStueckle_T1A3/docs/System_overview.pdf)
+### R7.2 Prioritiy of implementation
+Please see System overview , column priority
+
+![Systemoverview](../WolfgangStueckle_T1A3/docs/System_overview.pdf)
+
+### R7.3 Deadlines and duration
+according to project management plan on Agile
 [Project management](https://wolf-stueckle.atlassian.net/jira/software/projects/TA/boards/1/roadmap?shared=&atlOrigin=eyJpIjoiNDlmNmY2N2QzYTM3NDhlNTlmNmQwM2M5ZWI0OGZkYWYiLCJwIjoiaiJ9)
 ![Project plan screenshot](../WolfgangStueckle_T1A3/docs/terminal_application_2022-12-02_02.36pm.png)
 
-# R8: Help documentation
 
-## R8.1Installation
+## R8: Help documentation
+
+### R8.1Installation
 
 1. git clone git@github.com:stuWolf/WolfgangStueckleT1A3.git
 
-2. cd WolfgangStueckleT1A3/src
-run script ./calc_main.sh
+2. I imlpemented 2 version of the program, one with GUI bansed on TKinter and one with terminal user interface.
+change into WolfgangStueckleT1A3/src/gui_input
+run script ./gui_input_main.sh  for GUI based user interface
+or
+change into WolfgangStueckleT1A3/src/term_input
+run script ./term_input_main.sh  for terminal based user interface.
 
-as a back up I compiled a binary file with pyinstaller. it can be run stand alone with ./Calculator_main_bin or ./terminal_main_bin
-## R8.2 Dependencies
+as a back up I compiled  binary files with pyinstaller and it can be run stand alone with ./gui_input_main_bin or ./term_input_main_bin. 
 
-## R8.3 System requirements
+Both program files only run on the operation system the build was run which is Linux.
+
+### R8.2 Dependencies
+The programs have the following dependencies:
+csv, datetime, mathplotlib.pyplot, numpy, mathplotlib.lines, os, sys, tkinter
+Please also see system overview, column 'dependencies' for each function
+
+
+
+
+### R8.3 System requirements
 Runns on lynux/ PC
 
-## R 8.4 How to use command line arguments
-
-
-
-
-
-
-
-
-
-
-
-
-## Screenshot
-
-![Project screenshot](../WolfgangStueckle_T1A3/docs/investment%20app.png)
-
-## Tech stack
-
--python
-
--bash script
-
--git
-
--Markdown
-
-## applications used
--pyinstaller to create single executable file, independant of python installation
-
-
-
-
-
-## Target Audience
-
-everybody who is interested in financial education
+### R 8.4 How to use command line arguments
+As in installation

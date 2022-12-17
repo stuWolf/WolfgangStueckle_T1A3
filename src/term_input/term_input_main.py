@@ -99,7 +99,9 @@ def calculate():
     # system('clear')
 
 def get_file_name():
-    print('get file name called')
+    # gets the file name from user and check for plausibility
+
+    # print('get file name called')
     file_name = input("Input file name ")
     file_error = '* valid .csv file name needed'
     # input("press Enter to continue...")
@@ -134,9 +136,10 @@ def get_file_name():
     
 
 
-def read():
+def read_csv():
     # print('read file called')
-    # file_name = get_file_name()
+    # read out file and return lists of annual contribution and future capital for processing in plot function 
+    # only allow 4 attempts to get the fikle name right
     for i in range(3): 
         file_name = get_file_name()
 
@@ -171,7 +174,7 @@ while option != "5":
         calculate()
     elif option == "4":
         print("read .CSV")
-        read()
+        read_csv()
     #manages the exit option and the invalid options
     elif option == "5":
         continue

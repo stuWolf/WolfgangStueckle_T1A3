@@ -1,5 +1,6 @@
 
 def print_list_of_parameters(P, m,  r, Compound_frequ, t ):
+    # prints a list of the used data
     # P = 0 # start balance
     # m = 100 # monthly contribution
     # r = 18 # interest rate in %

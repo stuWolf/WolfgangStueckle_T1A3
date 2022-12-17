@@ -31,11 +31,8 @@ def store_csv(P, m,  r, Compound_frequ, num_years):
         f.write(f'Year {i},{capital},{round(m*12*i+P)} \n')
 
     f.close()
-    print(f'invest_data{filtered_date[2:8]}.csv created in location of this program')
-    # today = str(date.today())
-    # filtered_date= ''.join((filter(lambda x: x not in ['-'], today)))
-  
-    # print(filtered_date[2:8])
+    print(f'invest_data{filtered_date[2:8]}.csv created in the path of your terminal')
+ 
 
 
 

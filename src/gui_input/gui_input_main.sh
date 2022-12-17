@@ -20,6 +20,6 @@ python3 gui_input_main.py
 
 
 
-chmod +x gui_input_main
+chmod +x gui_input_main_bin
 
 # ./Calculator_main
